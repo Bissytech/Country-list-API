@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Countries</h1>
+    <!-- <div id="dispCountry"></div> -->
+    <select name="" id="dispCountry"></select>
+
+</body>
+</html>
+<script>
+    let dispCountry = document.getElementById('dispCountry')
+    fetch("https://restcountries.com/v3.1/all").then((res)=> res.json()).then((data)=>{
+        console.log(data.name);
+
+        data =  data.sort((a, b) =>{
+                if (a.name.official > b.name.official ) {
+                    return 1
+                }else if (a.name.official < b.name.official) {
+                    return -1
+                }else{
+                    return 0
+                }
+            })
+        
+        data.forEach((el)=>{
+            console.log(el.name.official);
+            
+            dispCountry.innerHTML +=`<option>Select Option</option><option value="${ el.name.official}">${ el.name.official}</option>`
+            
+
+                    
+                   
+               
+            
+        })
+    })
+        // console.log(data[0].name.nativeName);
+        // data.map((obj)=> {
+        //   console.log(obj.name.common);
+        // })
+        
+    
+</script>
